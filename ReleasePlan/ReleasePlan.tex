@@ -18,16 +18,22 @@
 	\caption{Het releaseplan.}
 \end{figure}
 
+% Hier worden alle branches beschreven
 \section{Omschrijving per branch}
 \subsection{Master}
 De master is de branch waar een geteste releases staan.
 \subsection{Hotfix}
 Als er een ernstige bug gevonden is in de master branch is het nodig om deze direct op te lossen. Een hotfix dient dan in de hotfix branch gemaakt te worden. Hiervoor wordt de build van de master gepulled, en een hotfix gemaakt. Vervolgens wordt deze naar de master gepushed als nieuwe versie.
 \subsection{Release}
-Todo
+De build van develop wordt naar de release branch gepushed als deze compleet is. Het QA-team kan deze versie testen. Bugs kunnen in deze branch gefixed worden, waarna het QA-team deze versie opnieuw test. Als de versie de groene vlag krijgt, en er geen bugs gevonden zijn, kan de master branch deze versie pullen.
 \subsection{Develop}
 De develop branch wordt gebruikt als start punt voor het ontwikkelen van nieuwe features. Er wordt vanaf deze branch een nieuwe branch gemaakt en daar wordt verder op gewerkt. Er wordt dus nooit ontwikkeld op deze branch.
 \subsection{New features}
 Voor elke nieuwe feature wordt een nieuwe branch gemaakt.
+
+% Hier wordt het releaseplan gemaakt in Git beschreven
+\pagebreak
+\section{Releaseplan in Git}
+Todo
 
 \end{document}
