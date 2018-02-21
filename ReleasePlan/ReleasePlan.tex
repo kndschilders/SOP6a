@@ -13,15 +13,21 @@
 \maketitle
 \end{titlepage}
 
-\section{Lorem}
-\subsection{Lorem ipsum}
-\subsubsection{dfskjhsdsd}
-
 \begin{figure}
-	\includegraphics[width=\textwidth]{images/test.png}
-	\caption{This is a test image.}
+	\includegraphics[width=\textwidth]{images/SOP6_Release.png}
+	\caption{Het releaseplan.}
 \end{figure}
 
-Lorem ipsum dolor sit amet.
+\section{Omschrijving per branch}
+\subsection{Master}
+De master is de branch waar een geteste releases staan.
+\subsection{Hotfix}
+Als er een ernstige bug gevonden is in de master branch is het nodig om deze direct op te lossen. Een hotfix dient dan in de hotfix branch gemaakt te worden. Hiervoor wordt de build van de master gepulled, en een hotfix gemaakt. Vervolgens wordt deze naar de master gepushed als nieuwe versie.
+\subsection{Release}
+Todo
+\subsection{Develop}
+Todo
+\subsection{New features}
+Voor elke nieuwe feature wordt een nieuwe branch gemaakt.
 
 \end{document}
