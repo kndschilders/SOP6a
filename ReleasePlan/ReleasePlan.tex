@@ -62,4 +62,48 @@ Er kan gekozen worden om de branch te beginnen vanaf een specifieke commit. Hier
 \href{https://github.com/kndschilders/ReleasePlanGitTest}{Hier}
 staat de volledige git repository. De branch 'NewFile' bestaat nog ter illustratie, maar zou in een echte production verwijderd moeten worden.
 
+% Nadere toelichting van Canvas vragen
+\pagebreak
+\section{Kwaliteit}
+De kwaliteit van een applicatie voorspelt onder andere hoe goed de applicatie onderhouden kan worden. De kwaliteit van een applicatie omvat veel zaken, zoals de codekwaliteit, testen en documentatie.
+
+\subsection{Codekwaliteit}
+% Wanneer is code goed genoeg om mee te mogen in een release?
+Een applicatie met code van slechte kwaliteit maakt het onderhouden van de applicatie op lange termijn erg lastig, vooral als er nieuwe ontwikkelaars aan gaan werken. Daarnaast is de kans op bugs waarschijnlijker bij code van slechte kwaliteit.
+\newline
+Codekwaliteit is een rekbaar begrip. Daarom hanteren we de volgende eisen waaraan code van goede kwaliteit aan moet voldoen:
+
+\begin{description}
+	\item[Eis 1] Lorem ipsum dolor sit amet
+	\item[Eis 2] Lorem ipsum dolor sit amet
+	\item[Eis 3] Lorem ipsum dolor sit amet
+\end{description}
+
+\subsection{Testing}
+% Hoe en waar gaat de nieuwe feature getest worden?
+Testen worden gebruikt om de functionaliteit van een applicatie te controleren. Tijdens het ontwikkelen moet een individuele feature natuurlijk getest worden alvorens het naar de development-branch wordt gepushed. Dit testen gebeurt in de feature-branch van de feature. Omdat er gewerkt wordt volgens het Test-Driven Development principe is het eenvoudig de feature te testen door de JUnit-tests uit te voeren. Als deze JUnit-tests geslaagd zijn is de feature 'af', en kan deze naar de development-branch.
+\newline
+Het is aan te raden om voor de belangrijkste klassen en methodes een code coverage van 100\% te hebben. Code coverage voor getters en setters zijn onnodig en tijdrovend. Daarom is 100\% code coverage voor de gehele applicatie geen goede tijdsinvestering.
+
+\subsection{Documentatie}
+% Wat zijn de eisen aan dingen als documentatie etc. voordat de feature klaar is (definition of done)?
+Documentatie is noodzakelijk voor het onderhouden van de applicatie, voornamelijk als de applicatie voor langere tijd moet worden onderhouden. Documentatie kan minimaal of zeer uitgebreid zijn. De code van elke feature moet minstens voldoen aan de 1\textsuperscript{ste} van de volgende eisen:
+
+\begin{enumerate}
+	\item Code documentatie (Javadoc) van belangrijkste klassen en methodes.
+	\item Comments binnen de belangrijkste methodes.
+	\item Code documentatie (Javadoc) van alle klassen en methodes binnen de applicatie.
+	\item Comments binnen de gehele applicatie.
+\end{enumerate}
+% TODO uitbreiden
+
+\noindent Naast code documentatie is het verstandig een handleiding te maken voor het gebruik van de applicatie. In deze handleiding wordt beschreven hoe de applicatie ... %TODO uitbreiden
+
+\pagebreak
+\section{Eisen voor release}
+% Wat zit er allemaal in een release?
+
+\subsection{Versienummers}
+% Wat doe je met versienummers?
+
 \end{document}
