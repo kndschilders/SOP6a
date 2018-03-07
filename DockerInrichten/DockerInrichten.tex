@@ -39,9 +39,16 @@ Voor deze opdracht moeten we een skelet opzetten van een CI/CD pipeline met Dock
 \end{figure}
 
 \subsection{Git repository}
-Eerst gaan we een Git repository maken met een test applicatie.
-% TODO: Github repo aanmaken tekst
+Eerst gaan we een Git repository maken met een test applicatie. De applicatie is een simpele rekenmachine met enkele JUnit-tests (Figure \ref{fig:calculator_app}).
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/CalculatorApplication.png}
+		\caption{De structuur van de Calculator applicatie\label{fig:calculator_app}}
+	\end{center}
+\end{figure}
+
+De Git repository heeft alleen een master branch. Dit is prima voor nu, maar in een echt project is het beter om het systeem van branches uit het releaseplan te gebruiken. Dat branch systeem is ingericht voor CI/CD gebruik.
 
 \subsection{Jenkins container}
 Nu gaan we een Docker container maken waar Jenkins op draait. Deze container moet zo worden ingericht dat Jenkins de Git repository weet te vinden, de tests gedraaid worden, en uiteindelijk een nieuwe Docker container aanroept.
@@ -52,19 +59,19 @@ In plaats van op een schone container Jenkins te installeren maken we gebruik va
     $ docker pull jenkins/jenkins
 \end{lstlisting}
 
-We kunnen de image openen met het volgende commando:
+\noindent We kunnen de image openen met het volgende commando:
 
 \begin{lstlisting}[language=Bash]
     $ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins
 \end{lstlisting}
 
-De docker instance draait, en heeft poort 8080 opengezet, zoals we hadden meegegeven in het commando. Nu moeten we het IP weten van Docker. Bij Docker Legacy is dit niet localhost, maar een ander local IP. Dit is op te vragen met het commando:
+\noindent De docker instance draait, en heeft poort 8080 opengezet, zoals we hadden meegegeven in het commando. Nu moeten we het IP weten van Docker. Bij Docker Legacy is dit niet localhost, maar een ander local IP. Dit is op te vragen met het commando:
 
 \begin{lstlisting}[language=Bash]
     $ docker-machine ip
 \end{lstlisting}
 
-Door naar het geretourneerde IP + poort 8080 te gaan in de browser kunnen we Jenkins configureren. Hiervoor moet een wachtwoord ingevoerd worden, welke te vinden is in de console window.
+\noindent Door naar het geretourneerde IP + poort 8080 te gaan in de browser kunnen we Jenkins configureren. Hiervoor moet een wachtwoord ingevoerd worden, welke te vinden is in de console window.
 
 % TODO: Jenkins configureren tekst
 
@@ -77,9 +84,9 @@ Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we all
 % TODO: Meer tekst
 
 
-\subsection{Deploy container}
-De Jenkins container is klaar, en de image wordt naar de Docker image repository gestuurd. Nu moet de image nog draaien in een aparte container, de deploy container.
+\subsection{Deployment container}
+De Jenkins container is klaar, en de image (een war-file) wordt naar de Docker image repository gestuurd. Nu moet de image nog draaien in een aparte container, de deployment container.
 
-% TODO: Deploy container maken en configureren tekst
+% TODO: Deployment container maken en configureren tekst
 
 \end{document}
