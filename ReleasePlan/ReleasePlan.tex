@@ -72,12 +72,15 @@ De kwaliteit van een applicatie voorspelt onder andere hoe goed de applicatie on
 Een applicatie met code van slechte kwaliteit maakt het onderhouden van de applicatie op lange termijn erg lastig, vooral als er nieuwe ontwikkelaars aan gaan werken. Daarnaast is de kans op bugs waarschijnlijker bij code van slechte kwaliteit.
 
 Codekwaliteit is een rekbaar begrip. Daarom hanteren we de volgende eisen waaraan code van goede kwaliteit aan moet voldoen:
+Codekwaliteit kan gewaarborgt worden door de volgende zaken op orde te hebben \textsuperscript{\cite{code_quality}}:
 
-\begin{description}
-	\item[Eis 1] Lorem ipsum dolor sit amet
-	\item[Eis 2] Lorem ipsum dolor sit amet
-	\item[Eis 3] Lorem ipsum dolor sit amet
-\end{description}
+\begin{enumerate}
+	\item Versiebeheer gebruiken. Als het versiebeheer goed is opgezet kan worden voorkomen dat bugs en slechte code in een release belanden. Een teamlid kan worden aangewezen welke de taak heeft features van de Develop-branch te testen, de codekwaliteit te bekijken, en vervolgens de code te pullen in de Release-branch. Dit teamlid is het enige teamlid met deze bevoegdheid. Zo'n opzet maakt het onwaarschijnlijk dat code van slechte kwaliteit in releases belandt.
+	\item Style guide document gebruiken. Een style guide is een lijst van best practices en conventies. Door een style guide te volgen wordt de code van alle ontwikkelaars consistent, waardoor alle ontwikkelaars de code kunnen begrijpen en bewerken. Grote bedrijven hebben hun style guides gepubliceert (\href{https://google.github.io/styleguide/cppguide.html}{zoals Google voor C++}). Het is aan te raden zo'n style guide te gebruiken,
+	\item Functional tests maken. Deze tests moeten op meerdere niveau's gemaakt worden. Eerst de Unit-tests, welke de werking van de individuele methodes test. Daarnaast kunnen integration-tests gemaakt worden, het testen van een software module. Hierna kunnen alle software modules getest worden in de test-omgeving (end-to-end testing).
+\end{enumerate}
+
+De code is goed genoeg voor een release als alle tests (unit, integration en end-to-end) slagen. De tests moeten uiteraard volledig en van goede kwaliteit zijn.
 
 \subsection{Testing}
 % Hoe en waar gaat de nieuwe feature getest worden?
@@ -95,7 +98,6 @@ Documentatie is noodzakelijk voor het onderhouden van de applicatie, voornamelij
 	\item Code documentatie (Javadoc) van alle klassen en methodes binnen de applicatie.
 	\item Comments binnen de gehele applicatie.
 \end{enumerate}
-% TODO uitbreiden
 
 \noindent Naast code documentatie is het verstandig een handleiding te maken voor het gebruik van de applicatie. In deze handleiding wordt beschreven hoe de gebruiker de applicatie moet gebruiken.
 
@@ -113,26 +115,46 @@ Een release van de applicatie bevat de volgende onderdelen:
 \subsection{Versienummers}
 % Wat doe je met versienummers?
 Versienummers kun je op verschillende manieren opzetten. Enkele veelvoorkomende voorbeelden:
+\begin{description}
+	\item [Semantic versioning] MAJOR.MINOR.PATCH, waarbij MAJOR een major verandering noteert, MINOR een minor verandering, en PATCH een bugfix of ophogend nummer
+	\item [Calendar versioning] YYYYMMDDx, waarbij YYYY het jaartal noteert, MM de maand, DD de dag, en eventueel een x welke de release van die dag aangeeft
+\end{description}
+
+\bigskip
+\noindent De voorkeur gaat uit naar de MAJOR.MINOR.PATCH notatie (semantic versioning), een veelvoorkomende manier van versioning welke o.a. GitHub gebruikt \textsuperscript{\cite{semantic_versioning}}. De major versie van de eerste productie release begint met 1. Soms wordt begonnen met 0, maar dit kan uitstralen dat de software nog niet serieus te nemen is \textsuperscript{\cite{semantic_versioning}}.
+
+Software welke semantic versioning gebruikt:
 \begin{itemize}
-	\item X.Y.Z, waarbij X een major verandering noteert, Y een minor verandering, en Z een bugfix of ophogend nummer
-	\item YYYYMMDDx, waarbij YYYY het jaartal noteert, MM de maand, DD de dag, en eventueel een x welke de release van die dag aangeeft
+	\item iOS
+	\item Linux kernel
+	\item npm
 \end{itemize}
 
-\noindent De voorkeur gaat uit naar de X.Y.Z notatie, een veelvoorkomende manier van versioning. De major versie van de eerste release begint met 1. Soms wordt begonnen met 0, maar dit kan uitstralen dat de software nog niet serieus te nemen is.
+\bigskip
+\noindent Als gekozen wordt voor de calendar versioning notatie (of een variant hiervan \textsuperscript{\cite{calendar_versioning}}) moet worden opgemerkt dat dit geen indicatie van de staat van de applicatie geeft. Zo kan 20180308a een compleet nieuwe API bevatten, welke niet meer compatibel is met 20180307c.
 
-Als gekozen wordt voor de YYYYMMDDx notatie moet worden opgemerkt dat dit geen indicatie van de staat van de applicatie geeft. Zo kan 20180308a een compleet nieuwe API bevatten, welke niet meer compatibel is met 20180307c.
-
-% Usage of citation:
-% Dit is een zin met een citaat als bewijs \textsuperscript{\cite{asdf}}.
+Software welke calendar versioning schema gebruikt:
+\begin{itemize}
+	\item iOS
+	\item Linux kernel
+	\item npm
+\end{itemize}
 
 % Sources
 \begin{thebibliography}{9}
-	\bibitem{asdf}
-		Name of Author,
-		\textit{Title of the book / site},
-		2\textsuperscript{nd} edition,
-		2000,
-		\url{http://google.com}
+	\bibitem{code_quality}
+		Tamás Török,
+		\textit{Comprehensive guide to code quality: Best practices and tools},
+		March 10 2017,
+		\url{https://codingsans.com/blog/code-quality#code_quality_assurance}
+	\bibitem{semantic_versioning}
+		Tom Preston-Werner,
+		\textit{Semantic Versioning 2.0.0},
+		\url{https://semver.org/}
+	\bibitem{calendar_versioning}
+		Mahmoud Hashemi,
+		\textit{Calendar Versioning},
+		\url{https://calver.org/}
 \end{thebibliography}
 
 \end{document}
