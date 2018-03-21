@@ -73,7 +73,38 @@ In plaats van op een schone container Jenkins te installeren maken we gebruik va
 
 \noindent Door naar het geretourneerde IP + poort 8080 te gaan in de browser kunnen we Jenkins configureren. Hiervoor moet een wachtwoord ingevoerd worden, welke te vinden is in de console window.
 
-% TODO: Jenkins configureren tekst
+\noindent Na het inloggen op de Jenkins omgeving konden we beginnen met het instellen. Hier zijn we begonnen met het instellen van de Github repository.
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/Jenkins-Github.png}
+		\caption{Het instellen van de github repository in Jenkins\label{fig:calculator_app}}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/Jenkins-Github-2.png}
+		\caption{Het configureren van de github repository in Jenkins\label{fig:calculator_app}}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/Maven.png}
+		\caption{Instellen van Maven in Jenkins\label{fig:calculator_app}}
+	\end{center}
+\end{figure}
+
+\noindent Na het instellen van Maven wordt de applicatie automatisch getest wanneer een developer pushed naar de gitrepository. Om de developer een update te geven over deze tests moet er een post build action ingesteld worden.
+Door het instellen van deze post build action wordt er automatisch een mail gestuurd wanneer de tests slagen of falen.
+We hebben het nu zo ingesteld dat wanneer de tests slagen je niet de log meegestuurd krijgt. Wanneer de tests falen krijgen de mensen in de mail lijst wel de log meegestuurd in de mail.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/Postbuildaction.png}
+		\caption{Email notificatie instellen\label{fig:calculator_app}}
+	\end{center}
+\end{figure}
 
 Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we alle wijzigingen kwijt. Dit kan door het volgende commando uit te voeren, waarbij CONTAINER vervangen dient te worden met het ID van de container:
 
