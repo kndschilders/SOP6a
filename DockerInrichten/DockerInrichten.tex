@@ -94,7 +94,7 @@ Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we all
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1.0\textwidth]{images/Jenkins-Github-2.PNG}
-		\caption{GiHub instellen\label{fig:jenkins_config_repo_2}}
+		\caption{GitHub instellen\label{fig:jenkins_config_repo_2}}
 	\end{center}
 \end{figure}
 
@@ -119,7 +119,9 @@ De Jenkins container is klaar, en de image (een war-file) wordt naar de Docker i
 We hebben gekozen om de war-file in een Tomcat container te draaien. 
 
 %TODO:
-% TomcatGlassfish docker image pullen en inrichten
+% Glassfish docker image pullen en inrichten
+
+% Commando: docker run -i -t -p 4848:4848 -p 8181:8181 -v "/var/lib/docker/volumes/jenkins_home/_data/workspace/SOP6 Docker/target":/glassfish5/glassfish/domains/domain1/autodeploy oracle/glassfish:latest
 
 % Eventueel: NAT instellingen controleren als dat nodig is
 
