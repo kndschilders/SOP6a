@@ -7,6 +7,13 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	frame=single,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
@@ -56,33 +63,18 @@ Nu gaan we een Docker container maken waar Jenkins op draait. Deze container moe
 In plaats van op een schone container Jenkins te installeren maken we gebruik van de kracht van Docker. Op de Docker Hub is een kant-en-klare Jenkins image te vinden. Deze kan gepulled worden met het volgende commando:
 
 \begin{lstlisting}[language=Bash]
-    $ docker pull jenkins/jenkins
+docker pull jenkins/jenkins
 \end{lstlisting}
 
-\noindent We kunnen de image openen met het volgende commando:
+\noindent We kunnen de image openen met het volgende commando\textsuperscript{\cite{jenkins_documentation}}:
 
 \begin{lstlisting}[language=Bash]
-    $ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:latest
 \end{lstlisting}
 
-\noindent De docker instance draait, en heeft poort 8080 opengezet, zoals we hadden meegegeven in het commando. Nu moeten we het IP weten van Docker. Bij Docker Legacy is dit niet localhost, maar een ander local IP. Dit is op te vragen met het commando:
+\noindent De docker instance draait, en heeft poort 8080 gemapped, zoals we hadden meegegeven in het commando. Nu moeten we Jenkins configureren. Hiervoor moet een wachtwoord ingevoerd worden, welke te vinden is in de console window.
 
-\begin{lstlisting}[language=Bash]
-    $ docker-machine ip
-\end{lstlisting}
-
-\noindent Door naar het geretourneerde IP + poort 8080 te gaan in de browser kunnen we Jenkins configureren. Hiervoor moet een wachtwoord ingevoerd worden, welke te vinden is in de console window.
-
-% TODO: Jenkins configureren tekst
-
-Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we alle wijzigingen kwijt. Dit kan door het volgende commando uit te voeren, waarbij CONTAINER vervangen dient te worden met het ID van de container:
-
-\begin{lstlisting}[language=Bash]
-    $ docker commit CONTAINER jenkins/jenkins:configured
-\end{lstlisting}
-
-% TODO: Meer tekst
-
+Eerst moeten we aangeven waar de git repository staat:
 
 \begin{figure}[H]
 	\begin{center}
@@ -91,12 +83,16 @@ Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we all
 	\end{center}
 \end{figure}
 
+\noindent Jenkins heeft user credentials nodig, en moet weten van welke branch hij de applicatie moeten halen.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1.0\textwidth]{images/Jenkins-Github-2.PNG}
 		\caption{GitHub instellen\label{fig:jenkins_config_repo_2}}
 	\end{center}
 \end{figure}
+
+\noindent Met Maven kan de applicatie gebuild worden. Uiteraard moet er eerst gecleaned worden (want het is Java). Hierna kan er gebuild en getest worden.
 
 \begin{figure}[H]
 	\begin{center}
@@ -105,6 +101,8 @@ Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we all
 	\end{center}
 \end{figure}
 
+\noindent Als laatste moeten er mail notifications ingesteld worden. Hier wordt simpelweg een email-adres ingevoerd. Als Jenkins iets te melden heeft wordt er naar dit email-adres een mailtje verstuurd.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1.0\textwidth]{images/Postbuildaction.PNG}
@@ -112,30 +110,38 @@ Na het configureren moeten we de image opslaan. Als we dit niet doen zijn we all
 	\end{center}
 \end{figure}
 
+\noindent Jenkins is nu correct geconfigureerd.
 
 \subsection{Deployment container}
-De Jenkins container is klaar, en de image (een war-file) wordt naar de Docker image repository gestuurd. Nu moet de image nog draaien in een aparte container, de deployment container.
+\noindent De Jenkins container is klaar, en de image (een war-file) wordt in de shared volume folder gezet. Nu moet de .war file draaien in een andere container.
 
-We hebben gekozen om de war-file in een Tomcat container te draaien. 
+We hebben gekozen om de war-file in een Glassfish container te draaien. We pullen eerst een Glassfish image: 
 
-%TODO:
-% Glassfish docker image pullen en inrichten
+\begin{lstlisting}[language=Bash]
+docker oracle/glassfish:latest
+\end{lstlisting}
 
-% Commando: docker run -i -t -p 4848:4848 -p 8181:8181 -v "/var/lib/docker/volumes/jenkins_home/_data/workspace/SOP6 Docker/target":/glassfish5/glassfish/domains/domain1/autodeploy oracle/glassfish:latest
+\noindent Er moet een Glassfish container gemaakt worden, welke gebaseert is op de Glassfish image. Deze container moet toegang krijgen tot de war file gemaakt door de Jenkins container, omdat deze war gepubliseert gaat worden. Daarnaast moeten de IP's gemapped worden zodat we de gepubliseerde applicatie kunnen bereiken vanaf het host systeem. Dit kan allemaal in één run-commando:
 
-% Eventueel: NAT instellingen controleren als dat nodig is
+\begin{lstlisting}[language=Bash]
+docker run -i -t -p 4848:4848 -p 8181:8181 -v "/var/lib/docker/volumes/jenkins_home/_data/workspace/SOP6 Docker/target":/glassfish5/glassfish/domains/domain1/autodeploy oracle/glassfish:latest
+\end{lstlisting}
 
-% Deployen
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1.0\textwidth]{images/applications_glassfish.png}
+		\caption{Glassfish heeft de war gevonden\label{fig:glassfish_application}}
+	\end{center}
+\end{figure}
 
-% Applicatie bereiken vanaf andere computer
-
+\noindent Met dit commando wordt een nieuwe Glassfish container aangemaakt. De IP's en volumes zijn gemapped.
 
 % Sources
 \begin{thebibliography}{9}
-	\bibitem{shortcode_name}
-		Name of author,
-		\textit{Title of page or book},
-		Date of publication,
-		\url{https://google.com}
+	\bibitem{jenkins_documentation}
+		Tom Hipkin,
+		\textit{Official Jenkins Docker image},
+		24 januari 2018,
+		\url{https://github.com/jenkinsci/docker/blob/master/README.md}
 \end{thebibliography}
 \end{document}
