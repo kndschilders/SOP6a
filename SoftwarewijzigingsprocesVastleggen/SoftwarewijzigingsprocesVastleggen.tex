@@ -13,7 +13,7 @@
 
 \title{Het softwarewijzigingsproces vastleggen}
 \author{Thomas van Dongen, Koen Schilders}
-\date{10 april 2018}
+\date{11 april 2018}
 
 \begin{document}
 
@@ -49,7 +49,7 @@ De tester test de complete applicatie, en bepaalt of deze bugvrij is. Extra gevo
 	\includegraphics[width=\textwidth]{images/UMLActivityDiagram.png}
 	\caption{Diagram van het softwarewijzigingsproces}
 \end{figure}
-Het proces begint bij de gebruiker/klant, welke een bug rapporteert in Jira. De manager beoordeelt vervolgens de bug, en zal deze goedkeuren of afkeuren. Als de bug goedgekeurd is wordt de bug nog beoordeeld op impact. Heeft de bug een grote impact, dan zal de manager goedkeuringseisen moeten opstellen. Dit is om te voorkomen dat de bug met grote impact bij de gebruiker terecht kan komen.
+Het proces begint bij de gebruiker/klant, welke een bug rapporteert in Jira. De manager beoordeelt vervolgens de bug, en zal deze goedkeuren of afkeuren. Als de bug goedgekeurd is wordt de bug nog beoordeeld op impact. Heeft de bug een grote impact, dan zal de manager goedkeuringseisen moeten opstellen. Dit is om te voorkomen dat de bug met grote impact bij de gebruiker terecht kan komen. Als de bug afgekeurd is krijgt de gebruiker/klant een notificatie, en kan hij een opmerking plaatsen als hij het niet eens is met de afwijzing. De bug begint dan weer opnieuw in het proces. Als de afwijzing terecht is moet de gebruiker/klant de bug report verwijderen.
 
 De bug komt nu bij de developer, die nu code gaat schrijven om de bug op te lossen. Hierna moet hij beoordelen of de bug opgelost is of niet. Dit beoordelen gebeurt op de ontwikkelomgeving en volgens een door de manager vastgestelde werkwijze. Zo is het mogelijk dat de manager bepaald dat de developer bij een webapplicatie de twee meestgebruikte browsers test. Als de bug nog niet is opgelost zal de developer opnieuw code moeten schrijven.
 
