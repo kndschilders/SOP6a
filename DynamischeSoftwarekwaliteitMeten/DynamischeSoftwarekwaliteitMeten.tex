@@ -23,13 +23,68 @@
 \maketitle
 \end{titlepage}
 
+\section{Inleiding}
+% Naast statische softwarekwaliteit ook dynamisch kwaliteit testen
+% Typen tests:
+%	* Performance tests
+%	* Resourceverbruik
+%	* 
+
+% We gaan de volgende dynamische tests integreren
+%	* JUnit in Jenkins
+%	* CLIF in Jenkins
+
+% Verder nog advies
+%	* Testteam opzetten
+
+Tot nu toe hebben we alleen de statische softwarekwaliteit gemeten, waarmee we kunnen meten wat de kwaliteit van de code is. Maar een applicatie kan alleen werken als de code uitgevoerd wordt, en de code kan tijdens het uitvoeren fouten tonen welke niet afgevangen kunnen worden door statische kwaliteit-checks. Daarom is het noodzakelijk om de dynamische softwarekwaliteit te meten. Dynamisch kwaliteit meten omvat alle tests die door middel van executie uitgevoerd worden, zoals performance- en resourceverbruik meten.
+Het is belangrijk om de dynamische softwarekwaliteit te meten. Door te meten kun je te weten komen of je applicatie functioneert wanneer deze draait, en of de applicatie voldoet aan opgestelde niet-functionele requirements. Ook kun je testen hoe de applicatie omgaat met piekmomenten. Dit voorkomt dat een onstabiele applicatie draait op de productieomgeving, met alle nadelige gevolgen van dien.
+
+
+\section{Dynamische kwaliteit testen}
+Er zijn verschillende plugins voor Jenkins beschikbaar waarmee de dynamische kwaliteit gemeten kan worden. Voor deze opdracht gaan we de CLIF Performance Testing\textsuperscript{\cite{jenkins_clif_plugin}} toevoegen.
+
+\subsection{CLIF Performance Testing}
+CLIF\textsuperscript{\cite{clif}} is een open source testing platform, waarmee onder andere de performance van een applicatie getest kan worden. CLIF heeft ondersteuning voor JVM, en er bestaat een plugin voor Jenkins\textsuperscript{\cite{jenkins_clif_plugin}}.
+
+\subsubsection{CLIF docker container}
+% docker pull dillense/clif
+
+% docker run -it -u clif -w /home/clif dillense/clif
+
+\subsubsection{CLIF Performance Testing plugin}
+% Plugin toevoegen aan Jenkins: CLIF Performance Testing Plugin
+
+% Clif installations: fields invullen:
+%	name: "CLIF 2.3.3"
+%	home directory: "path/to/clif-2.3.3-server"
+%	install automatically werkt niet
+
+% CLIF job maken in SOP6 Docker configuratie
+
+% Report screenshots en uitleg
+
+\subsection{Testteam}
+Daarnaast kan het handig zijn een testteam samen te stellen, vooral bij complexe applicaties zoals games. Omdat de testers mensen zijn kunnen ze de applicatie op een menselijke manier testen en actueel gebruik door gebruikers nabootsen. Zo kunnen testers dus naast bugs ook gebruiksvriendelijkheid van de applicatie testen, wat van groot belang is voor applicaties met veel gebruikers.
+
 % Sources
 \begin{thebibliography}{9}
-	\bibitem{shortcode_name}
-	Name of author,
-	\textit{Title of page or book},
-	Date of publication,
-	\url{https://google.com}
+	\bibitem{clif}
+	OW2 Consortium,
+	\textit{The CLIF Project},
+	25 januari 2017,
+	\url{http://clif.ow2.org/}
+	
+	\bibitem{clif_docker}
+	Bruno Dillenseger,
+	\textit{docker-clif repository},
+	\url{https://github.com/dillense/docker-clif}
+	
+	\bibitem{jenkins_clif_plugin}
+	Bruno Dillenseger,
+	\textit{CLIF Performance Testing Plugin},
+	3 februari 2017,
+	\url{https://wiki.jenkins.io/display/JENKINS/CLIF+Performance+Testing+Plugin}
 \end{thebibliography}
 
 \end{document}
