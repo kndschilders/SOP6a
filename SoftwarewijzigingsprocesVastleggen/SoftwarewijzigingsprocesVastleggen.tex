@@ -13,7 +13,7 @@
 
 \title{Het softwarewijzigingsproces vastleggen}
 \author{Thomas van Dongen, Koen Schilders}
-\date{14 maart 2018}
+\date{10 april 2018}
 
 \begin{document}
 
@@ -31,67 +31,30 @@ In dit document wordt een softwarewijzigingsproces beschreven waardoor de softwa
 
 \section{Het softwarewijzigingsproces}
 \subsection{Rollen}
-% TODO: Benoem de rollen en omschrijf deze
-% TODO: Per rol beschrijven welke verantwoordelijkheden
 \subsubsection{Gebruiker/Klant}
-Lorem ipsum dolor sit amet.
+De gebruiker / klant gebruikt uiteindelijk de applicatie, en zal dus het meeste tijd met de applicatie doorbrengen. De gebruiker van de applicatie mag een solide applicatie verwachten. Mocht er een bug voordoen moet hij deze ergens kunnen aangeven zodat de bug zo snel mogelijk opgelost wordt.
 
-\medskip
-\noindent\textbf{Verantwoordelijkheden:}
-\begin{itemize}
-	\item Verantwoordelijkheid 1
-\end{itemize}
+\subsubsection{Manager}
+De manager beheert het ontwikkelproces, en stuurt de developers en testers aan. Daarnaast is de manager verantwoordelijk voor het opstellen en controleren van releases.
+
+\subsubsection{Developer}
+De developer schrijft code om bugs op te lossen. Ook test de developer op een kleine schaal of de bug opgelost is.
 
 \subsubsection{Tester}
-Lorem ipsum dolor sit amet.
-
-\medskip
-\noindent\textbf{Verantwoordelijkheden:}
-\begin{itemize}
-	\item Verantwoordelijkheid 1
-\end{itemize}
-
-\subsubsection{Ontwikkelaar}
-Lorem ipsum dolor sit amet.
-
-\medskip
-\noindent\textbf{Verantwoordelijkheden:}
-\begin{itemize}
-	\item Verantwoordelijkheid 1
-\end{itemize}
-
-\subsubsection{Productowner}
-Lorem ipsum dolor sit amet.
-
-\medskip
-\noindent\textbf{Verantwoordelijkheden:}
-\begin{itemize}
-	\item Verantwoordelijkheid 1
-\end{itemize}
-
+De tester test de complete applicatie, en bepaalt of deze bugvrij is. Extra gevonden bugs kan de tester aangeven aan het bugtrackingsysteem.
 
 
 \subsection{UML-Activity diagram}
-%\begin{figure}[H]
-%	\includegraphics[width=\textwidth]{images/UMLActivityDiagram.png}
-%	\caption{Diagram van het softwarewijzigingsproces.}
-%\end{figure}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/UMLActivityDiagram.png}
+	\caption{Diagram van het softwarewijzigingsproces}
+\end{figure}
+Het proces begint bij de gebruiker/klant, welke een bug rapporteert in Jira. De manager beoordeelt vervolgens de bug, en zal deze goedkeuren of afkeuren. Als de bug goedgekeurd is wordt de bug nog beoordeeld op impact. Heeft de bug een grote impact, dan zal de manager goedkeuringseisen moeten opstellen. Dit is om te voorkomen dat de bug met grote impact bij de gebruiker terecht kan komen.
 
-% UML-Activity diagram maken, incl swimlanes voor verschillende rollen
-% Diagram beschrijven, uitleg over ontwerpkeuzes
-% Diagram moet duidelijk maken wie welke taak uitvoert, met welke tooling en welke (OTAP) omgeving
+De bug komt nu bij de developer, die nu code gaat schrijven om de bug op te lossen. Hierna moet hij beoordelen of de bug opgelost is of niet. Dit beoordelen gebeurt op de ontwikkelomgeving en volgens een door de manager vastgestelde werkwijze. Zo is het mogelijk dat de manager bepaald dat de developer bij een webapplicatie de twee meestgebruikte browsers test. Als de bug nog niet is opgelost zal de developer opnieuw code moeten schrijven.
 
+Nu de bug opgelost is in de ontwikkelomgeving is het de taak van de testers om de complete applicatie te testen op de testomgeving. De testers hebben een eigen werkwijze om de complete applicatie te testen, en hieruit zal blijken of de applicatie nog bugs bevat. Als dit zo is zal de developer de bugs moeten oplossen.
 
-% Werkinstructies voor wat ingewikkeldere taken in het diagram
-
-
-% Sources
-\begin{thebibliography}{9}
-	\bibitem{shortcode_name}
-	Name of author,
-	\textit{Title of page or book},
-	Date of publication,
-	\url{https://google.com}
-\end{thebibliography}
+Als de applicatie door de testfase is gekomen zal de manager een releaseplan moeten opzetten. De developer zal dit plan vervolgens uitvoeren op de productieomgeving.
 
 \end{document}
