@@ -21,7 +21,7 @@
 
 \title{De kwaliteit automatisch controleren}
 \author{Thomas van Dongen, Koen Schilders}
-\date{14 maart 2018}
+\date{11 april 2018}
 
 \begin{document}
 
@@ -55,6 +55,7 @@ SonarQube draait op poort 9000. We kunnen controleren of SonarQube draait door n
 \end{figure}
 
 
+\section{SonarQube Scanner}
 Nu moeten we Jenkins laten weten waar de SonarQube server te vinden is, waarvoor we de SonarQube Scanner plugin gebruiken. Dit moet in Jenkins - Configuratie - SonarQube servers. Het is belangrijk om localhost:9000 te vervangen door IP:9000, in ons geval 192.168.24.125:9000. Vul de token in van de vorige stap. Nu kan Jenkins de SonarQube server vinden.
 
 \begin{figure}[H]
@@ -64,8 +65,7 @@ Nu moeten we Jenkins laten weten waar de SonarQube server te vinden is, waarvoor
 	\end{center}
 \end{figure}
 
-Jenkins kunnen we nu met een bouwstap toevoegen aan de ontwikkelstraat. SonarQube heeft enkele settings nodig om succesvol SonarQube uit te voeren.
-
+Jenkins kunnen we nu met een bouwstap toevoegen aan de ontwikkelstraat. SonarQube Scanner heeft enkele settings nodig om succesvol SonarQube uit te voeren. Zo moet de plugin weten wat de logingegevens en projectnaam zijn, en welke bestanden hij moet testen.
 
 \begin{figure}[H]
 	\begin{center}
@@ -74,17 +74,7 @@ Jenkins kunnen we nu met een bouwstap toevoegen aan de ontwikkelstraat. SonarQub
 	\end{center}
 \end{figure}
 
-
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=0.75\textwidth]{images/overzichtjenkins.PNG}
-		\caption{Overzich in Jenkins project\label{fig:overzichtjenkins}}
-	\end{center}
-\end{figure}
-
-
-
+Na het configureren kan een nieuwe bouwpoging gestart worden. In de logs is te zien dat SonarQube succesvol uitgevoerd wordt. In het overzicht van het Jenkins project is ook te zien dat SonarQube succesvol uitgevoerd is.
 
 \begin{figure}[H]
 	\begin{center}
@@ -93,6 +83,14 @@ Jenkins kunnen we nu met een bouwstap toevoegen aan de ontwikkelstraat. SonarQub
 	\end{center}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/overzichtjenkins.PNG}
+		\caption{Overzich in Jenkins project\label{fig:overzichtjenkins}}
+	\end{center}
+\end{figure}
+
+In de SonarQube dashboard kan de uitslag nader bekeken worden. Zo heeft het testproject 5 Code Smells, waar mogelijk naar gekeken moet worden.
 
 \begin{figure}[H]
 	\begin{center}
@@ -100,23 +98,6 @@ Jenkins kunnen we nu met een bouwstap toevoegen aan de ontwikkelstraat. SonarQub
 		\caption{Het dashboard van SonarQube\label{fig:succes}}
 	\end{center}
 \end{figure}
-
-
-% selecteer java als project, selecteer maven
-
-
-
-\section{SonarQube Scanner}
-% Plugin installeren
-
-% Manage Jenkins -> Configure System -> SonarQube configuration -> Add SonarQube
-% Values invullen\begin{equation}\label{key}
-
-
-
-
-% Plugin instellen
-% Jenkins -> manage jenkins -> global tool configuration
 
 
 % Sources
